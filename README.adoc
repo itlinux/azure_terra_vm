@@ -1,1 +1,17 @@
-= Azure Terraform Deploying CentOS USWEST2 az v2 
+= Azure Terraform Deploying CentOS USWEST2 az v2
+
+== Files
+This plan is split with every topic
+
+* firewall
+* virtual machine
+* output
+* main
+* networks
+* variables
+
+Pretty much all options are in variables.
+
+
+== To Do
+Multi Regions
