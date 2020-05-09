@@ -49,7 +49,7 @@ resource "azurerm_network_interface" "remo_tf_nic" {
 }
 
 # Connect the security group to the network interface
-resource "azurerm_network_interface_security_group_association" "example" {
+resource "azurerm_network_interface_security_group_association" "jointogether_networks" {
   network_interface_id      = azurerm_network_interface.remo_tf_nic.id
   network_security_group_id = azurerm_network_security_group.remo_tf_security_gr.id
 }
