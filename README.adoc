@@ -1,10 +1,13 @@
 = Azure Terraform Deploying CentOS USWEST2 az v2
+
 How to use it
     make sure you have the az installed, brew install azure-cli
     then
+
     ====
     az login
     ====
+
 That's it!
 
 == Files
