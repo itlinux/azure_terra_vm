@@ -50,7 +50,7 @@ resource "azurerm_linux_virtual_machine" "remo_tf_vm" {
     version   = var.version_to_use
   }
 
-  computer_name                   = "${var.comp_name}-${count.index + 1}"
+  computer_name                   = title("${var.comp_name}-${count.index + 1}")
   admin_username                  = var.user_name
   disable_password_authentication = var.password_disable
 
