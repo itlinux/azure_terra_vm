@@ -21,12 +21,14 @@ resource "azurerm_storage_account" "remo_tf_storage" {
   }
 }
 
+
 resource "azurerm_linux_virtual_machine" "remo_tf_vm" {
-  name                  = var.vm_name
-  resource_group_name   = azurerm_resource_group.remo_tf_rg.name
+  count                 = var.number_of_vm
+  name                  = "${var.vm_name}_num_${count.index + 1}"
   location              = var.location
-  network_interface_ids = [azurerm_network_interface.remo_tf_nic.id]
   size                  = var.vm_size
+  resource_group_name   = azurerm_resource_group.remo_tf_rg.name
+  network_interface_ids = [element(azurerm_network_interface.remo_tf_nic.*.id, count.index)]
 
   admin_ssh_key {
     username   = var.user_name
@@ -35,7 +37,8 @@ resource "azurerm_linux_virtual_machine" "remo_tf_vm" {
 
 
   os_disk {
-    name                 = var.os-disk
+    #  name                 = var.os-disk
+    name                 = "${var.os-disk}-${count.index + 1}"
     caching              = var.caching
     storage_account_type = var.account_type
   }
@@ -47,7 +50,7 @@ resource "azurerm_linux_virtual_machine" "remo_tf_vm" {
     version   = var.version_to_use
   }
 
-  computer_name                   = var.comp_name
+  computer_name                   = "${var.comp_name}-${count.index + 1}"
   admin_username                  = var.user_name
   disable_password_authentication = var.password_disable
 
