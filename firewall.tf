@@ -1,6 +1,6 @@
-resource "azurerm_network_security_group" "remo_tf_security_gr" {
+resource "azurerm_network_security_group" "it_tf_security_gr" {
   location            = var.location
-  resource_group_name = azurerm_resource_group.remo_tf_rg.name
+  resource_group_name = azurerm_resource_group.it_tf_rg.name
   name                = "${var.prefix}-sg"
 
   security_rule {

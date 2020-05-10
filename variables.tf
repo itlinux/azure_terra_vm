@@ -12,6 +12,10 @@ variable "prefix" {
   description = "This prefix will be included in the name of most resources."
 }
 
+# Web Page Msg
+variable "web_msg" {
+
+}
 #Network CIDR
 variable "network_cidr" {
   default = ["10.0.0.0/16"]

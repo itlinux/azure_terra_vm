@@ -33,6 +33,8 @@ This plan is split with every topic
 Pretty much all options are in variables.
 
 
+== Adding the Apache httpd VM
+The first VM will have the web server running with the page ciao as a message.
 
 == To Do
 Multi Regions

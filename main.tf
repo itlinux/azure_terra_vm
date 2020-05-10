@@ -4,7 +4,7 @@ provider "azurerm" {
   version = "~>2.0"
   features {}
 }
-resource "azurerm_resource_group" "remo_tf_rg" {
+resource "azurerm_resource_group" "it_tf_rg" {
   name     = var.resource_group
   location = var.location
 }
