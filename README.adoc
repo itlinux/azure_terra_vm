@@ -4,11 +4,21 @@ How to use it
     make sure you have the az installed, brew install azure-cli
     then
 
-    ====
+    ========
     az login
-    ====
+    ========
 
 That's it!
+
+
+== Requirements
+It needs Terraform 0.12 since it uses the new variable interpolation
+
+For reference check the link below
+
+----
+"https://www.terraform.io/docs/configuration-0-11/interpolation.html"
+----
 
 == Files
 This plan is split with every topic
