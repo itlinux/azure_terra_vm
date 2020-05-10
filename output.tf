@@ -1,8 +1,3 @@
-
-# output "network_interface_ids" {
-#   description = "ids of the vm nics provisoned."
-#   value       = azurerm_public_ip.remo_tf_public_ip.*.id
-# }
 output "remo_tf_public_ip" {
   description = "Public IP addresses."
   value       = azurerm_public_ip.remo_tf_public_ip.*.ip_address

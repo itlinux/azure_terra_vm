@@ -35,9 +35,7 @@ resource "azurerm_linux_virtual_machine" "remo_tf_vm" {
     public_key = file("${var.public_key}")
   }
 
-
   os_disk {
-    #  name                 = var.os-disk
     name                 = "${var.os-disk}-${count.index + 1}"
     caching              = var.caching
     storage_account_type = var.account_type

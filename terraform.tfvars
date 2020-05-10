@@ -1,5 +1,5 @@
 location         = "westus2"
-resource_group   = "remo_tf_rg"
+resource_group   = "itlinux_tf_rg"
 prefix           = "remo-tf"
 network_cidr     = ["10.0.0.0/16"]
 network_name     = "remo_tf_Vnet"

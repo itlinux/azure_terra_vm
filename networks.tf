@@ -35,9 +35,6 @@ resource "azurerm_public_ip" "remo_tf_public_ip" {
 
 # Create network interface
 resource "azurerm_network_interface" "remo_tf_nic" {
-  #name = "azurestack_resource_group.remo_tf_rg.name-NIC${count.index + 1}"
-  #name = "NIC${count.index + 1}"
-  #name                = var.nic_name
   name                = "VM_NIC-${count.index + 1}"
   location            = var.location
   count               = var.number_of_vm
@@ -48,8 +45,6 @@ resource "azurerm_network_interface" "remo_tf_nic" {
     subnet_id                     = azurerm_subnet.remo_tf_subnet.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = element(azurerm_public_ip.remo_tf_public_ip.*.id, count.index)
-    #public_ip_address_id          = "azurerm_public_ip.remo_tf_public_ip.[0].id"
-    #public_ip_address_id          = [element(azurerm_public_ip.remo_tf_public_ip.*.id, count.index)]
   }
   tags = {
     environment = var.env_tag
