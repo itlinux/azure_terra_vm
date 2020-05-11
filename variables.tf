@@ -11,6 +11,47 @@ variable resource_group {
 variable "prefix" {
   description = "This prefix will be included in the name of most resources."
 }
+variable "specs" {
+  # must select a region that supports availability zones
+  # https://docs.microsoft.com/en-us/azure/availability-zones/az-overview
+  default = {
+    apache = {
+      region             = "westus2"
+      azs                = ["1"]
+      application_count  = 3
+      environment        = "apache"
+      cidr               = "10.0.0.0/8"
+      ltm_instance_count = 2
+      gtm_instance_count = 1
+      owner              = "Remo Mattei"
+    }
+    nginx = {
+      region             = "westus2"
+      azs                = ["1"]
+      application_count  = 4
+      environment        = "nginx"
+      cidr               = "10.0.0.0/8"
+      ltm_instance_count = 2
+      gtm_instance_count = 0
+      owner              = "Remo Mattei"
+      #azs                = ["1","3"]
+    }
+    default = {
+      region             = "westus2"
+      azs                = ["1"]
+      application_count  = 2
+      environment        = "apache/nginx"
+      cidr               = "10.0.0.0/8"
+      ltm_instance_count = 1
+      gtm_instance_count = 1
+    }
+  }
+}
+
+variable "specs_name" {
+  default     = "default"
+  description = "name of the map within specification to use for the build"
+}
 
 # Web Page Msg
 variable "web_msg" {
