@@ -142,27 +142,3 @@ variable "comp_name" {
 variable "password_disable" {
 }
 #
-# Those options below were for AWS dynamic ports
-# variable "accessip" {
-#   default = "0.0.0.0/0"
-# }
-
-# variable "service_ports" {
-#   default = [
-#     {
-#       from_port = "22",
-#       to_port   = "22"
-#       name      = "ssh"
-#     },
-#     {
-#       from_port = "80",
-#       to_port   = "80"
-#       name      = "HTTP"
-#     },
-#     {
-#       from_port = "443"
-#       to_port   = "443"
-#       name      = "HTTPS"
-#     }
-#   ]
-# }
