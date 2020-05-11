@@ -39,7 +39,7 @@ The first VM will have the web server running with the page ciao as a message.
 === NOTICE: Sometimes the output does not show the PublicIP, if that's the case use the following command
 
 ----
-terraform refresh
+terraform refresh -state=terraform.tfstate.d/YOURWORKSPACENAME/terraform.tfstate
 ----
 
 == To Do
