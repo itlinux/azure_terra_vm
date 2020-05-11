@@ -33,8 +33,8 @@ This plan is split with every topic
 Pretty much all options are in variables.
 
 
-== Adding the Apache httpd VM
-The first VM will have the web server running with the page ciao as a message.
+== HTTPD VM
+THIS BRANCH will not have HTTP since will be deploying BIG-IP
 
 === NOTICE: Sometimes the output does not show the PublicIP, if that's the case use the following command
 
