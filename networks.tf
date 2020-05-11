@@ -35,7 +35,7 @@ resource "azurerm_public_ip" "it_tf_public_ip" {
 
 # Create network interface
 resource "azurerm_network_interface" "it_tf_nic" {
-  name                = "VM_NIC-${count.index + 1}"
+  name                = "${var.vm_name}-${count.index + 1}-NIC"
   location            = var.location
   count               = var.number_of_vm
   resource_group_name = azurerm_resource_group.it_tf_rg.name
