@@ -8,7 +8,7 @@ resource "azurerm_virtual_machine_extension" "apache" {
   virtual_machine_id   = azurerm_linux_virtual_machine.it_tf_vm[0].id
   settings             = <<SETTINGS
 {
-  "commandToExecute": "sudo yum install -y httpd &&  systemctl --now enable httpd && echo ${var.web_msg} >/var/www/html/index.html"
+  "commandToExecute": "sudo  bash -c 'yum install -y epel-release && yum install -y nginx &&  systemctl --now enable nginx && echo ${var.web_msg} > /usr/share/nginx/html/index.html'"
 }
 SETTINGS
 }
