@@ -12,7 +12,7 @@ resource "azurerm_resource_group" "it_tf_rg" {
   name     = var.resource_group
   location = var.location
   tags = {
-    environment = var.specs[var.specs_name]["environment"]
-    owner       = var.specs[var.specs_name]["owner"]
+    environment = var.specs[terraform.workspace]["environment"]
+    owner       = var.specs[terraform.workspace]["owner"]
   }
 }

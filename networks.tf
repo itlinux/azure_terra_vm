@@ -18,11 +18,10 @@ resource "azurerm_subnet" "it_tf_subnet" {
   address_prefixes     = var.subnet_prefix
 }
 
-
 # Create public IPs
 resource "azurerm_public_ip" "it_tf_public_ip" {
-  name = "${var.public_ip_name}-${count.index + 1}"
   #name                = var.public_ip_name
+  name                = "${var.public_ip_name}-${count.index + 1}"
   location            = var.location
   resource_group_name = azurerm_resource_group.it_tf_rg.name
   count               = var.number_of_vm

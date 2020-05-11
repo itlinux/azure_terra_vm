@@ -14,8 +14,52 @@ variable "prefix" {
 
 # Web Page Msg
 variable "web_msg" {
-
 }
+
+
+variable "specs" {
+  # must select a region that supports availability zones
+  # https://docs.microsoft.com/en-us/azure/availability-zones/az-overview
+  default = {
+    apache = {
+      region             = "westus2"
+      azs                = ["1"]
+      application_count  = 3
+      environment        = "apache"
+      cidr               = "10.0.0.0/8"
+      ltm_instance_count = 2
+      gtm_instance_count = 1
+      owner              = "Remo Mattei"
+    }
+    nginx = {
+      region             = "westus2"
+      azs                = ["1"]
+      application_count  = 4
+      environment        = "nginx"
+      cidr               = "10.0.0.0/8"
+      ltm_instance_count = 2
+      gtm_instance_count = 0
+      owner              = "Remo Mattei"
+      #azs                = ["1","3"]
+    }
+    default = {
+      region             = "westus2"
+      azs                = ["1"]
+      application_count  = 2
+      environment        = "apache/nginx"
+      cidr               = "10.0.0.0/8"
+      ltm_instance_count = 1
+      gtm_instance_count = 1
+      owner              = ""
+    }
+  }
+}
+
+variable "specs_name" {
+  default     = "default"
+  description = "name of the map within specification to use for the build"
+}
+
 #Network CIDR
 variable "network_cidr" {
   default = ["10.0.0.0/16"]
