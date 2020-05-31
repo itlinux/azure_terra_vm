@@ -48,7 +48,7 @@ variable "specs" {
       cidr               = "10.0.0.0/8"
       ltm_instance_count = 1
       gtm_instance_count = 1
-      owner              = " "
+      owner              = "Remo Mattei"
     }
   }
 }
