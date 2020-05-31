@@ -1,6 +1,6 @@
-output "it_tf_public_ip" {
+output "Public_IPs" {
   description = "Public IP addresses."
-  value       = azurerm_public_ip.it_tf_public_ip.*.ip_address
+  value       = azurerm_linux_virtual_machine.it_tf_vm.*.public_ip_address
 }
 output "private_ip" {
   value = azurerm_linux_virtual_machine.it_tf_vm.*.private_ip_address
