@@ -32,7 +32,7 @@ resource "azurerm_linux_virtual_machine" "it_tf_vm" {
 
   admin_ssh_key {
     username   = var.user_name
-    public_key = file("${var.public_key}")
+    public_key = var.public_key
   }
 
   os_disk {
