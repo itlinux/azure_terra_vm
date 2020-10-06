@@ -8,7 +8,10 @@ resource "azurerm_virtual_machine_extension" "apache" {
   virtual_machine_id   = azurerm_linux_virtual_machine.it_tf_vm[count.index].id
   settings             = <<SETTINGS
  {
-  "commandToExecute": "sudo yum install -y httpd &&  systemctl --now enable httpd && echo ${var.web_msg} >/var/www/html/index.html"
+  "commandToExecute": "sudo yum install -y httpd &&  systemctl --now enable httpd && echo ${var.web_msg} >/var/www/html/index.html && curl -o /tmp/onboard_agent.sh https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh /tmp/onboard_agent.sh -w ${var.workspaceid} -s ${var.sharedkeyid} -d opinsights.azure.com"
  }
 SETTINGS
 }
+
+
+

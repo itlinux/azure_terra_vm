@@ -2,7 +2,7 @@
 resource "random_id" "randomId" {
   keepers = {
     # Generate a new ID only when a new resource group is defined
-    resource_group = azurerm_resource_group.it_tf_rg.name
+    resource_group = data.azurerm_resource_group.it_tf_rg.name
   }
 
   byte_length = 8
@@ -11,7 +11,7 @@ resource "random_id" "randomId" {
 # Create storage account for boot diagnostics
 resource "azurerm_storage_account" "it_tf_storage" {
   name                     = "diag${random_id.randomId.hex}"
-  resource_group_name      = azurerm_resource_group.it_tf_rg.name
+  resource_group_name      = data.azurerm_resource_group.it_tf_rg.name
   location                 = var.location
   account_tier             = var.tier_level
   account_replication_type = var.replication_type
@@ -27,8 +27,9 @@ resource "azurerm_linux_virtual_machine" "it_tf_vm" {
   name                  = "${var.vm_name}_num_${count.index + 1}"
   location              = var.location
   size                  = var.vm_size
-  resource_group_name   = azurerm_resource_group.it_tf_rg.name
+  resource_group_name   = data.azurerm_resource_group.it_tf_rg.name
   network_interface_ids = [element(azurerm_network_interface.it_tf_nic.*.id, count.index)]
+  zone                  = element(local.azs, count.index % length(local.azs))
 
   admin_ssh_key {
     username   = var.user_name

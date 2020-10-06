@@ -8,11 +8,19 @@ provider "azurerm" {
   version = "~>2.0"
   features {}
 }
-resource "azurerm_resource_group" "it_tf_rg" {
-  name     = var.resource_group
-  location = var.location
-  tags = {
-    environment = var.specs[terraform.workspace]["environment"]
-    owner       = var.specs[terraform.workspace]["owner"]
-  }
+
+data "azurerm_resource_group" "it_tf_rg" {
+  name = "mytest-remo-rg"
 }
+output "id" {
+  value = data.azurerm_resource_group.it_tf_rg.id
+}
+
+# resource "azurerm_resource_group" "it_tf_rg" {
+#   name     = var.resource_group
+#   location = var.location
+#   tags = {
+#     environment = var.specs[terraform.workspace]["environment"]
+#     owner       = var.specs[terraform.workspace]["owner"]
+#   }
+# }

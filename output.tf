@@ -11,3 +11,7 @@ output "username" {
 output "sshkey" {
   value = azurerm_linux_virtual_machine.it_tf_vm.0.admin_ssh_key
 }
+
+output mgmt_fqdn {
+  value = azurerm_public_ip.it_tf_public_ip.*.fqdn
+}

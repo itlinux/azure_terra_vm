@@ -28,6 +28,8 @@ variable "specs" {
       ltm_instance_count = 2
       gtm_instance_count = 1
       owner              = "Remo Mattei"
+      fqdn               = "webdemo"
+      fqdn_name          = "westus2.cloudapp.azure.com"
     }
     nginx = {
       region             = "westus2"
@@ -38,17 +40,20 @@ variable "specs" {
       ltm_instance_count = 2
       gtm_instance_count = 0
       owner              = "Remo Mattei"
-      #azs                = ["1","3"]
+      fqdn               = "webdemo"
+      fqdn_name          = "westus2.cloudapp.azure.com"
     }
     default = {
       region             = "westus2"
-      azs                = ["1"]
+      azs                = ["1", "3"]
       application_count  = 2
       environment        = "apache/nginx"
       cidr               = "10.0.0.0/8"
       ltm_instance_count = 1
       gtm_instance_count = 1
       owner              = "Remo Mattei"
+      fqdn               = "webdemo"
+      fqdn_name          = "westus2.cloudapp.azure.com"
     }
   }
 }
@@ -142,3 +147,6 @@ variable "comp_name" {
 variable "password_disable" {
 }
 #
+#
+variable "workspaceid" {}
+variable "sharedkeyid" {}
