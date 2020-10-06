@@ -15,3 +15,7 @@ output "sshkey" {
 output mgmt_fqdn {
   value = azurerm_public_ip.it_tf_public_ip.*.fqdn
 }
+
+output "zones_used_for_the_vm" {
+  value = azurerm_public_ip.it_tf_public_ip.*.zones
+}
