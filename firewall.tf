@@ -1,4 +1,5 @@
 resource "azurerm_network_security_group" "it_tf_security_gr" {
+  count               = var.specs[terraform.workspace]["vm_count"]
   location            = var.location
   resource_group_name = data.azurerm_resource_group.it_tf_rg.name
   name                = "${var.prefix}-sg"

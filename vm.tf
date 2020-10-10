@@ -10,7 +10,8 @@ resource "random_id" "randomId" {
 #
 # Create storage account for boot diagnostics
 resource "azurerm_storage_account" "it_tf_storage" {
-  name                     = "diag${random_id.randomId.hex}"
+  count                    = var.specs[terraform.workspace]["vm_count"]
+  name                     = "diag${random_id.randomId.hex}${count.index}"
   resource_group_name      = data.azurerm_resource_group.it_tf_rg.name
   location                 = var.location
   account_tier             = var.tier_level
@@ -23,7 +24,7 @@ resource "azurerm_storage_account" "it_tf_storage" {
 
 
 resource "azurerm_linux_virtual_machine" "it_tf_vm" {
-  count                 = var.number_of_vm
+  count                 = var.specs[terraform.workspace]["vm_count"]
   name                  = "${var.vm_name}_num_${count.index + 1}"
   location              = var.location
   size                  = var.vm_size
@@ -54,7 +55,8 @@ resource "azurerm_linux_virtual_machine" "it_tf_vm" {
   disable_password_authentication = var.password_disable
 
 
-  tags = {
+  tags          = {
     environment = var.env_tag
+    owner       = var.specs[terraform.workspace]["owner"]
   }
 }

@@ -21,11 +21,10 @@ resource "azurerm_subnet" "it_tf_subnet" {
 
 # Create public IPs
 resource "azurerm_public_ip" "it_tf_public_ip" {
-  #name                = var.public_ip_name
   name                = "${var.public_ip_name}-${count.index + 1}"
   location            = var.location
   resource_group_name = data.azurerm_resource_group.it_tf_rg.name
-  count               = var.number_of_vm
+  count               = var.specs[terraform.workspace]["vm_count"]
   allocation_method   = "Dynamic"
   domain_name_label   = "${var.specs[terraform.workspace]["fqdn"]}${count.index}"
   zones               = [element(local.azs, count.index)]
@@ -38,7 +37,7 @@ resource "azurerm_public_ip" "it_tf_public_ip" {
 resource "azurerm_network_interface" "it_tf_nic" {
   name                = "${var.vm_name}-${count.index + 1}-NIC"
   location            = var.location
-  count               = var.number_of_vm
+  count               = var.specs[terraform.workspace]["vm_count"]
   resource_group_name = data.azurerm_resource_group.it_tf_rg.name
 
   ip_configuration {
@@ -54,7 +53,7 @@ resource "azurerm_network_interface" "it_tf_nic" {
 
 # Connect the security group to the network interface
 resource "azurerm_network_interface_security_group_association" "jointogether_networks" {
-  count                     = var.number_of_vm
+  count                     = var.specs[terraform.workspace]["vm_count"]
   network_interface_id      = element(azurerm_network_interface.it_tf_nic.*.id, count.index)
   network_security_group_id = element(azurerm_network_security_group.it_tf_security_gr.*.id, count.index)
 }

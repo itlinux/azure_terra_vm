@@ -10,7 +10,8 @@ provider "azurerm" {
 }
 
 data "azurerm_resource_group" "it_tf_rg" {
-  name = "mytest-remo-rg"
+  name = "rg_nginx"
+  #name = "mytest-remo-rg"
 }
 output "id" {
   value = data.azurerm_resource_group.it_tf_rg.id

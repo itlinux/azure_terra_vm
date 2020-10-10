@@ -20,40 +20,40 @@ variable "specs" {
   # https://docs.microsoft.com/en-us/azure/availability-zones/az-overview
   default = {
     apache = {
-      region             = "westus2"
-      azs                = ["1"]
-      application_count  = 3
-      environment        = "apache"
-      cidr               = "10.0.0.0/8"
-      ltm_instance_count = 2
-      gtm_instance_count = 1
-      owner              = "Remo Mattei"
-      fqdn               = "webdemo"
-      fqdn_name          = "westus2.cloudapp.azure.com"
+      region      = "westus2"
+      azs         = ["1"]
+      vm_count    = 3
+      environment = "apache"
+      cidr        = "10.0.0.0/8"
+      owner       = "Remo Mattei"
+      fqdn        = "webdemo"
+      fqdn_name   = "westus2.cloudapp.azure.com"
+      webserver   = "httpd"
+      htmllocation = "/var/www/html/index.html"
     }
-    nginx = {
-      region             = "westus2"
-      azs                = ["1"]
-      application_count  = 4
-      environment        = "nginx"
-      cidr               = "10.0.0.0/8"
-      ltm_instance_count = 2
-      gtm_instance_count = 0
-      owner              = "Remo Mattei"
-      fqdn               = "webdemo"
-      fqdn_name          = "westus2.cloudapp.azure.com"
+    nginx          = {
+      region       = "westus2"
+      azs          = ["1"]
+      vm_count     = 4
+      environment  = "nginx"
+      cidr         = "10.0.0.0/8"
+      owner        = "Remo Mattei"
+      fqdn         = "webnginx"
+      fqdn_name    = "westus2.cloudapp.azure.com"
+      webserver    = "nginx"
+      htmllocation = "/usr/share/nginx/html/index.html"
     }
     default = {
-      region             = "westus2"
-      azs                = ["1", "3"]
-      application_count  = 2
-      environment        = "apache/nginx"
-      cidr               = "10.0.0.0/8"
-      ltm_instance_count = 1
-      gtm_instance_count = 1
-      owner              = "Remo Mattei"
-      fqdn               = "webdemo"
-      fqdn_name          = "westus2.cloudapp.azure.com"
+      region      = "westus2"
+      azs         = ["1", "3"]
+      vm_count    = 2
+      environment = "apache/nginx"
+      cidr        = "10.0.0.0/8"
+      owner       = "Remo Mattei"
+      fqdn        = "defaultdemo"
+      fqdn_name   = "westus2.cloudapp.azure.com"
+      webserver   = "httpd"
+      htmllocation = "/var/www/html/index.html"
     }
   }
 }
@@ -148,5 +148,3 @@ variable "password_disable" {
 }
 #
 #
-variable "workspaceid" {}
-variable "sharedkeyid" {}
