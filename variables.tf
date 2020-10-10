@@ -38,7 +38,7 @@ variable "specs" {
       ltm_instance_count = 2
       gtm_instance_count = 0
       owner              = "Remo Mattei"
-      #azs                = ["1","3"]
+      azs                = ["1","3"]
     }
     default = {
       region             = "westus2"
