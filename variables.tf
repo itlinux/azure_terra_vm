@@ -31,7 +31,6 @@ variable "specs" {
     }
     nginx = {
       region             = "westus2"
-      azs                = ["1"]
       application_count  = 4
       environment        = "nginx"
       cidr               = "10.0.0.0/8"
